@@ -42,7 +42,7 @@ console.log(actors);
 var actors = [];
 movies.reduce(function(actors,movie) {
     if(typeof movie['casts'] != 'undefined') {
-        movie['casts'].forEach(function(name, i) {
+        movie['casts'].forEach(function(name) {
             var pos = actors.map(function(item) {
                 return item.name; 
             }).indexOf(name);
@@ -64,25 +64,32 @@ movies.reduce(function(actors,movie) {
     return actors;
 }, actors);
 
-console.log('----------Unique list of actors');
+console.log('---------- Unique list of actors');
 console.log('Count: (' + actors.length + ')');
 console.log(actors);
 
-actors.sort(function(a, b) {
-    return a.name.localeCompare(b.name);
-});
+function applySort(arr, direction = 'ASC' , k) {
+    arr.sort(function(a, b) {
+        if (direction.toLowerCase == 'asc) {
+            return a[k].localeCompare(b[k]);
+        } else {
+            return b[k].localeCompare(a[k]);
+        }
+    });
+    return arr;
+}
 
-console.log('Sorted by Name (ASC)');
-console.log(actors);
+console.log('---------- Sorted by Name (ASC)');
+console.log(applySort(actors, 'asc', 'name');
 
-actors.sort(function(a, b) {
-    return b.name.localeCompare(a.name);
-});
+console.log('---------- Sorted by Name (DESC)');
+console.log(applySort(actors, 'desc', 'name');
 
-console.log('Sorted by Name (DESC)');
-console.log(actors);
+console.log('---------- Sorted by Count (ASC)');
+console.log(applySort(actors, 'asc', 'count');
 
-console.log('test current update speed');
+console.log('---------- Sorted by count (DESC)');
+console.log(applySort(actors, 'desc', 'count');
 
 </script>
 </body>
