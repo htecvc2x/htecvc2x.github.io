@@ -77,13 +77,13 @@ function applySort(arr, k, direction) {
 }
 
 console.log('---------- Sorted by Name (ASC)');
-console.log(applySort(actors, 'asc', 'name'));
+console.log(applySort(actors, 'name', 'asc' ));
 
 console.log('---------- Sorted by Name (DESC)');
-console.log(applySort(actors, 'desc', 'name'));
+console.log(applySort(actors, 'name', 'desc'));
 
 console.log('---------- Sorted by Count (ASC)');
-console.log(applySort(actors, 'asc', 'count'));
+console.log(applySort(actors, 'count', 'asc'));
 
 console.log('---------- Sorted by count (DESC)');
-console.log(applySort(actors, 'desc', 'count'));
+console.log(applySort(actors, 'count', 'desc'));
