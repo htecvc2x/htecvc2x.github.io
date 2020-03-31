@@ -66,6 +66,7 @@ console.log('Count: (' + actors.length + ')');
 console.log(actors);
 
 function applySort(arr, k, direction) {
+    var arr = arr.slice();
     arr.sort(function(a, b) {
         var t = typeof a[k] == 'string';
         if (direction.toLowerCase() == 'asc') {
