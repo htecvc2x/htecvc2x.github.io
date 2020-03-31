@@ -67,10 +67,19 @@ console.log(actors);
 
 function applySort(arr, k, direction) {
     arr.sort(function(a, b) {
+        var t = typeof a[k] == 'string';
         if (direction.toLowerCase() == 'asc') {
-            return a[k].toString().localeCompare(b[k].toString());
+            if (t) {
+				return a[k].localeCompare(b[k]);
+            } else {
+                return a[k] - b[k];
+            }
         } else {
-            return b[k].toString().localeCompare(a[k].toString());
+            if (t) {
+                return b[k].localeCompare(a[k]);
+            } else {
+                return b[k] - a[k];
+            }
         }
     });
     return arr;
