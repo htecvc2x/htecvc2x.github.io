@@ -28,12 +28,16 @@
 const arr = ["Tom", "Steve", "Bill", "Rita", "Pete", "Ashley"];
 const list = document.getElementById('list');
 
-function applySort(direction) {
+function applySort(direction = asc) {
     console.log('applySort');
 
     let n = arr
         .sort((a,b) => {
-            return a.localeCompare(b);
+            if (direction == 'asc') {
+                return a.localeCompare(b);
+            } else {
+                return b.localeCompare(a);
+            }
         })
         .map((element) => {
             return '<li class="list-group-item">' + element + '</li>';
@@ -44,11 +48,11 @@ function applySort(direction) {
     return false;
 }
 
-applySort('asc');
+applySort();
 
 </script>
 
-<a href="#" onclick="applySort('asc');">ASC</a>
+<a href="#" onclick="applySort();">ASC</a>
 <a href="#" onclick="applySort('desc');">DESC</a>
 
 
