@@ -41,7 +41,7 @@ function applySort(direction = 'asc') {
             return '<li class="list-group-item">' + element + '</li>';
         });
 
-    list.innerHTML = n;
+    list.innerHTML = n.join('');
 
     return false;
 }
