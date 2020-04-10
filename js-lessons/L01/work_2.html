@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="form-group">
-                <select id="users-select" class="custom-select">
+                <select id="users-select" class="custom-select" on>
                     <option>Choose age</option>
                 </select>
             </div>
@@ -52,14 +52,24 @@ let usersSorted =
     users.sort((a,b) => {
         return parseInt(a.age) - parseInt(b.age);
     })
-    .map((element) => {
-        return '<option>' + element.name + ' [id: ' + element.age + ']</option>';
+    .map((element, index) => {
+        return '<option value="' + index + '">' + element.name + ' [id: ' + element.age + ']</option>';
     });
 
 console.log(usersSorted);
 
 usersSelect.innerHTML = usersSorted;
 console.log(usersSelect);
+
+usersSelect.onchange = () => {
+    let i = usersSelect.value;
+    let usersFiltered = users.filter((user) => {
+        return parseInt(user.age) == parseInt(users[i].age);
+    });
+
+    console.log(usersFiltered);
+    res.innerHTML = usersFiltered;
+}
 
 </script>
 
