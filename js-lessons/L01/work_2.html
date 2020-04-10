@@ -48,7 +48,8 @@ const users = [
  {id: 9, name: "Willy", age: "20"}
 ]
 
-function applySort(arr) {
+function applySort(arr, sort_by) {
+    let k  = sort_by;
     arr.sort((a,b) => {
         return parseInt(a.age) - parseInt(b.age);
     });
@@ -56,7 +57,9 @@ function applySort(arr) {
 }
 
 let usersSorted = 
-    applySort(users)
+    users.sort((a,b) => {
+        return parseInt(a.age) - parseInt(b.age);
+    })
     .map((element, index) => {
         return '<option value="' + index + '">' + element.name + ' [id: ' + element.age + ']</option>';
     });
@@ -68,12 +71,16 @@ console.log(usersSelect);
 
 usersSelect.onchange = () => {
     let i = usersSelect.value;
-    let usersFiltered = applySort(users.filter((user) => {
-        return parseInt(user.age) == parseInt(users[i].age);
-    }))
-    .map((element) => {
-        return '<p>' + element.name + ' [id: ' + element.age + ']</p>';
-    });
+    let usersFiltered = users
+        .filter((user) => {
+            return parseInt(user.age) == parseInt(users[i].age);
+        })
+        .sort((a,b) => {
+            return a.name.localeCompare(b.name);
+        })
+        .map((element) => {
+            return '<p>' + element.name + ' [id: ' + element.age + ']</p>';
+        });
 
     res.innerHTML = usersFiltered.join('');
 }
