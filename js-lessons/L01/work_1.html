@@ -14,8 +14,8 @@
     </ul>
 
 </div>
-<script>
-
+<script type="text/javascript">
+    'use strict';
 
 // Написать функцию map, которая будет принимать в качестве
 // аргумента массив arr и функцию, которая в свою очередь будет
@@ -24,15 +24,14 @@
 // и выводить элементы массива в ul с id="res"
 // Вывод должен осуществляться в отсортированном по алфавиту виде
 
-let arr = ["Tom", "Steve", "Bill", "Rita", "Pete", "Ashley"];
+const arr = ["Tom", "Steve", "Bill", "Rita", "Pete", "Ashley"];
 const list = document.getElementById('list');
 
-// Сигнатура map
-function map(list, fn){
-    // todo
- }
+let n = arr.map((element) => {
+    return '<li class="list-group-item">' + element + '</li>';
+});
 
-
+list.innerHTML(n);
 
 </script>
 
