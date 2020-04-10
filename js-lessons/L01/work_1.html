@@ -15,7 +15,8 @@
 
 </div>
 <script type="text/javascript">
-    'use strict';
+
+'use strict';
 
 // Написать функцию map, которая будет принимать в качестве
 // аргумента массив arr и функцию, которая в свою очередь будет
@@ -27,17 +28,28 @@
 const arr = ["Tom", "Steve", "Bill", "Rita", "Pete", "Ashley"];
 const list = document.getElementById('list');
 
-let n = arr
-    .sort((a,b) => {
-        return a.localeCompare(b);
-    })
-    .map((element) => {
-        return '<li class="list-group-item">' + element + '</li>';
-    });
+function applySort(direction) {
+    console.log('applySort');
 
-list.innerHTML = n;
+    let n = arr
+        .sort((a,b) => {
+            return a.localeCompare(b);
+        })
+        .map((element) => {
+            return '<li class="list-group-item">' + element + '</li>';
+        });
+
+    list.innerHTML = n;
+
+    return false;
+}
+
+applySort('asc');
 
 </script>
+
+<a href="#" onclick="applySort('asc');">ASC</a>
+<a href="#" onclick="applySort('desc');">DESC</a>
 
 
 </body>
