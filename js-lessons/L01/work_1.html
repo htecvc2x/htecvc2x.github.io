@@ -28,9 +28,7 @@
 const arr = ["Tom", "Steve", "Bill", "Rita", "Pete", "Ashley"];
 const list = document.getElementById('list');
 
-function applySort(direction = asc) {
-    console.log('applySort');
-
+function applySort(direction = 'asc') {
     let n = arr
         .sort((a,b) => {
             if (direction == 'asc') {
@@ -52,9 +50,9 @@ applySort();
 
 </script>
 
-<a href="#" onclick="applySort();">ASC</a>
-<a href="#" onclick="applySort('desc');">DESC</a>
-
-
+<div class="d-flex justify-content-center">
+    <button type="button" class="mt-2 btn btn-primary" onclick="applySort();">ASC</button>
+    <button type="button" class="mt-2 ml-4 btn btn-primary" onclick="applySort('desc');">DESC</button>
+</div>
 </body>
 </html>
