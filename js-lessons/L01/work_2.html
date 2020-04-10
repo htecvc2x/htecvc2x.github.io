@@ -48,32 +48,36 @@ const users = [
  {id: 9, name: "Willy", age: "20"}
 ]
 
-function applySort(arr, sort_by) {
-    let k  = sort_by;
-    arr.sort((a,b) => {
-        return parseInt(a.age) - parseInt(b.age);
-    });
-    return arr;
-}
+const ages = [];
 
-let usersSorted = 
-    users.sort((a,b) => {
-        return parseInt(a.age) - parseInt(b.age);
+//let usersSorted = 
+//    users.sort((a,b) => {
+//        return parseInt(a.age) - parseInt(b.age);
+//    })
+//    .map((element, index) => {
+//        return '<option value="' + index + '">' + element.name + ' [id: ' + element.age + ']</option>';
+//    });
+//
+//usersSelect.innerHTML = usersSorted.join('');
+
+users.forEach((item, i) => {
+    console.log(ages);
+    if (ages.indexOf(parseInt(item.age)) == '-1') {
+        ages.push(parseInt(item.age));
+    }
+});
+
+usersSelect.innerHTML = ages
+    .map((item) => {
+        return '<option>' + item + ' years old</option>';
     })
-    .map((element, index) => {
-        return '<option value="' + index + '">' + element.name + ' [id: ' + element.age + ']</option>';
-    });
-
-console.log(usersSorted);
-
-usersSelect.innerHTML = usersSorted.join('');
-console.log(usersSelect);
+    .join('');
 
 usersSelect.onchange = () => {
-    let i = usersSelect.value;
+    let i = usersSelect.selectedIndex;
     let usersFiltered = users
         .filter((user) => {
-            return parseInt(user.age) == parseInt(users[i].age);
+            return parseInt(user.age) == parseInt(ages[i]);
         })
         .sort((a,b) => {
             return a.name.localeCompare(b.name);
@@ -84,6 +88,7 @@ usersSelect.onchange = () => {
 
     res.innerHTML = usersFiltered.join('');
 }
+usersSelect.onchange();
 
 </script>
 
