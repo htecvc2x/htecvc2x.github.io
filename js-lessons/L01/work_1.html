@@ -27,9 +27,13 @@
 const arr = ["Tom", "Steve", "Bill", "Rita", "Pete", "Ashley"];
 const list = document.getElementById('list');
 
-let n = arr.map((element) => {
-    return '<li class="list-group-item">' + element + '</li>';
-});
+let n = arr
+    .sort((a,b) => {
+        return a.localeCompare(b);
+    })
+    .map((element) => {
+        return '<li class="list-group-item">' + element + '</li>';
+    });
 
 list.innerHTML = n;
 
