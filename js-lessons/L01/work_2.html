@@ -36,7 +36,7 @@
 const usersSelect = document.getElementById('users-select')
 const res = document.getElementById('res')
 
-let users = [
+const users = [
  {id: 1, name: "John", age: "20"},
  {id: 2, name: "Sasha", age: "30"},
  {id: 3, name: "Bill", age: "40"},
@@ -47,6 +47,19 @@ let users = [
  {id: 8, name: "Jim", age: "40"},
  {id: 9, name: "Willy", age: "20"}
 ]
+
+let usersSorted = 
+    users.sort((a,b) => {
+        return parseInt(a.age) - parseInt(b.age);
+    })
+    .map((element) => {
+        return '<option>' + element.name + ' [id: ' + element.age + ']</option>';
+    });
+
+console.log(usersSorted);
+
+usersSelect.innerHTML = usersSorted;
+console.log(usersSelect);
 
 </script>
 
