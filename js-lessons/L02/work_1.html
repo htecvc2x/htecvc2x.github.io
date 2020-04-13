@@ -25,6 +25,15 @@
             <li class="list-group-item text-center">5</li>
         </ul>
     </div>
+    <div class="col-sm-3">
+        <ul id="list2" class="list-group">
+            <li class="list-group-item text-center">1</li>
+            <li class="list-group-item text-center">2</li>
+            <li class="list-group-item text-center">3</li>
+            <li class="list-group-item text-center">4</li>
+            <li class="list-group-item text-center">5</li>
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -45,16 +54,24 @@ var d = document,
         els = list.getElementsByTagName('li'),
         len = els.length;
 
-for (var i = 0; i < len; i++) {
+for (let i = 0; i < len; i++) {
     els[i].onclick = function(){
         alert(i);
     };
 }
 
+var d = list2 = d.getElementById('list2'),
+        els2 = list2.getElementsByTagName('li'),
+        len2 = els2.length;
 
 
-
-
+for (var i = 0; i < len; i++) {
+    (function(current_element) {
+        els2[i].onclick = function(){
+            alert('List2 : ' + current_element);
+        };
+    })(i);
+}
 
 </script>
 </div>

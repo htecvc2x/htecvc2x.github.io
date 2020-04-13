@@ -19,6 +19,15 @@
 *   Например  sum(3)(1) -> 4  , sum(7)(-1) -> 6
 * */
 
+const sum = function(a) {
+    return function(b) {
+        return a + b;
+    }
+}
+
+console.log(sum(3)(1));
+console.log(sum(7)(-1));
+
 
 </script>
 </div>
