@@ -15,25 +15,23 @@
 <script>
 
 
-var makeCount = (function (){
-    return () => {
-     var count = 0;
+var makeCount = function() {
+    var count = 0;
 
-        function set (){
-           return ++count;
-        }
-
-        function show(){
-            assert(true, count);
-        }
-
-        return {
-            show:show,
-            set:set
-        };
-
+    function set (){
+       return ++count;
     }
-}());
+
+    function show(){
+        assert(true, count);
+    }
+
+    return {
+        show,
+        set : set
+    };
+
+};
 
 /*
   Сейчас код работает так, что нельзя создать
