@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lab 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box-row mt-5">
+            <div id="box" class="box mb-3">1</div>
+            <button id="btn" class="btn btn-success">Click me</button>
+        </div>
+    </div>
+    
+
+<script>
+
+const dice =  {
+		  sides: 5,
+		  roll:  function(){
+      	  return Math.floor(Math.random() * this.sides) + 1;
+    	}
+}
+
+const btn = document.getElementById('btn');
+
+function print(number = 1){
+    const box = document.getElementById('box')
+    box.innerHTML = number;
+}
+
+function handleClick(){
+    const res = dice.roll();
+    print(res);
+}
+
+btn.addEventListener('click', handleClick, false)
+
+
+</script>
+</body>
+</html>

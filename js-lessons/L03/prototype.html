@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>JavaScript - prototype</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../_/css/style.css">
+    <script src="../_/js/script.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Prototypes</h2>
+    <ul id="results"></ul>
+    <!-- ************************* -->
+    <script>
+
+function Foo(who) {
+    this.me = who;
+
+    this.getName = function(){
+        return this.me;
+    }
+}
+
+const u1 = new Foo('A1');
+const u2 = new Foo('A2');
+
+console.log(u1.getName());
+console.log(u2.getName());
+
+
+    </script>
+</div>
+</body>
+</html>

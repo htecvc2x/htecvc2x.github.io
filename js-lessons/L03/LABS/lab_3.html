@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lab 3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+
+
+<script>
+function myNew(Constructor, ...args){
+
+
+  // Create an empty object
+  // Set the value of the value this to be that empty object
+  // set __proto__ to be a Prototype property of the Constructor
+  // return this
+
+
+
+}
+
+// Проверка
+function Person(name){
+    this.name  = name;
+}
+Person.prototype.sayHi = function(){
+    return `Hi ${this.name}`;
+}
+
+let user = myNew(Person, 'Bill')
+
+console.log(user.name);
+console.log(user.sayHi());
+
+</script>
+</body>
+</html>

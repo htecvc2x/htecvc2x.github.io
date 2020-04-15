@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lab 2 - Play list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container pt-5">
+
+        <div class="col-sm-8 offset-sm-2">
+
+            <div class="row">
+                <h2 class="col-sm-12 text-white text-center p3 bg-info mb-0">Play list</h2>
+            </div>
+
+
+        <!-- Songs here  -->
+            <div id="list" class="list">
+                <div class="row py-3 current">
+                    <div class="col-sm-9">Yellow submarine - Beatles</div>
+                    <div class="col-sm-3">04:33</div>
+                </div>
+                <div class="row py-3">
+                        <div class="col-sm-9">There're must be an angel - Eurythmics</div>
+                        <div class="col-sm-3">06:03</div>
+                </div>
+            </div>
+             <!-- End Songs here  -->
+
+
+            <div class="row">
+                <div class="col-sm-12 bg-light">
+                        <div class="button-group text-center  py-3">
+                            <button id="btn-play" class="btn btn-primary btn-lg mr-5">Play</button>
+                            <button id="btn-next" class="btn btn-info  btn-lg mr-5">Next</button>
+                            <button id="btn-stop" class="btn btn-success btn-lg">Stop</button>
+                        </div>
+                </div>
+            </div>
+
+     </div>
+    </div>
+
+
+<script src="playlist.js"></script>
+<script src="song.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

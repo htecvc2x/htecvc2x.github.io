@@ -1,0 +1,12 @@
+.box-row {
+    width: 160px;
+    margin: auto;
+    text-align: center;
+}
+.box {
+    font-size: 100px;
+     padding: 2rem;
+    text-align: center;
+    border: 2px solid navy;
+    border-radius: 12px;
+}

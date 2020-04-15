@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+ <head>
+    <title>Способы создания объектов</title>
+    <meta charset="utf-8">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href="_/css/style.css">
+     <script src="_/js/script.js"></script>
+ </head>
+<body>
+<div class="container">
+<h2>Objects create</h2>
+<ul id="results"></ul>
+<script>
+
+
+function Foo(who){
+  this.me = who;
+}
+
+// Cтатисческме свойства и методы принадлежат функии-конструктору,
+//  а не объекту
+
+Foo.maxNum = 123;
+
+Foo.say =  function(ob){
+    return "Hi " + ob.me
+}
+
+
+const u1 = new Foo("Vasya");
+const u2 = new Foo("Bill");
+
+assert(true, Foo.say(u1));
+assert(true, Foo.say(u2));
+
+
+
+
+</script>
+</div>
+</body>
+</html>

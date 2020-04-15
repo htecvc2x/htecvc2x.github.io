@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+ <head>
+    <title>Способы создания объектов</title>
+    <meta charset="utf-8">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href="_/css/style.css">
+     <script src="_/js/script.js"></script>
+ </head>
+<body>
+<div class="container">
+<h2>Objects create</h2>
+<ul id="results"></ul>
+<script>
+
+// 1-й способ создания объекта
+ /*
+ Так создавать удобно один один объект. Но если объектов десяток
+ то можно легко допустить ошибку при их создании, и конечно же
+ код повторяется, что крайне неприемлимо при программировании
+ */
+
+var person1 = {
+    firstName: 'Bill',
+    greet: function(){
+        assert(true, "Hello " +  this.firstName);
+    }
+};
+
+var person2 = {
+    firstName: 'Fill',
+    greet: function(){
+        assert(true, "Hello " + this.firstName);
+    }
+};
+
+
+// 2. Factory pattern
+/*
+* Достоинства - удобно и просто создавать объекты
+* */
+
+/*
+function createPerson(fName, lName){
+    return {
+        firstName: fName,
+        lastName: lName,
+        getFullName: function(){
+            assert(true, "Hello " + this.firstName + " " + this.lastName);
+        }
+    };
+}
+
+var user1 = createPerson('Tom', 'Cruise');
+user1.getFullName();
+
+var user2 = createPerson('Emma', 'Watson');
+user2.getFullName();
+*/
+
+/*
+*  Но свойства и никак не защищены от изменения снаружи
+*  То есть можноо сделать так
+* */
+
+/*
+user1.firstName = "NO NAME"; // имя этого объекта изменилось
+user1.getFullName(); // Hello NO NAME Cruise
+*/
+
+
+
+
+/* Когда мы описываем какой либо объект в JavaScript мы  по сути
+* создаем новый тип данных
+*  Для проверки к какому типу данных принадлежит объект используется
+*  оператор instanceof
+*/
+
+//assert(user1 instanceof Object, "user1 instanceof Object");
+
+
+/*
+*  При использовании паттерна factory мы можем только определить, что
+*  user1 является наследником общего типа Object.
+*  В JavaScript все  reference types являются наследниками Object
+*
+*   Мы не можем также сделать так
+*/
+
+//assert(user1 instanceof createPerson, "user1 instanceof createPerson");
+
+/*
+* так как это простая функция
+*
+* То есть при использовании паттерна factory мы не можем точно сказать
+* какой тип у объекта
+* Кроме того метод getFullName() физически присутствует у кажного экземпляра,
+* созданного функцией createPerson,  что ведет к увеличению потребления памяти
+* Но по факту этот метод делает одно и то же для всех объектов.
+*/
+
+
+// 3.Creation pattern
+
+/*
+var Person = function(fName, lName) {
+    this.firstName = fName;
+    this.lastName = lName;
+};
+Person.prototype.getFullName = function(){
+    assert(true, "Hello " + this.firstName + " " + this.lastName);
+};
+
+
+var u1 = new Person('James', 'Clark');
+var u2 = new Person('Tom', 'Anderson');
+u1.getFullName();
+u2.getFullName();
+
+*/
+
+/* Теперь мы можем определить, что объект u1 имеет тип Person.*/
+
+// assert(u1 instanceof Person, "u1 instanceof Person");
+// assert(u2 instanceof Person, "u2 instanceof Person");
+
+/* И терерь оба объекта u1 и u2  используют общую функцию
+getFullName() которую мы записали в объект prototype объекта Person.
+*/
+
+// assert(u1.getFullName === u2.getFullName, "u1.getFullName === u2.getFullName");
+
+</script>
+</div>
+</body>
+</html>
