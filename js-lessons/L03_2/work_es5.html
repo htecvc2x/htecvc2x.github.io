@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<body>
+
+<script>
+
+'use strict';
+
+function ShopProduct(title,price) {
+    this.title = title;
+    this.price = price;
+
+    this.getTitle = function() {
+        return this.title;
+    }
+
+    this.setTitle = function(title) {
+        this.title = title;
+        return this;
+    }
+
+    this.getPrice = function() {
+        return this.price;
+    }
+
+    this.setPrice = function(price) {
+        this.price = price;
+        return this;
+    }
+
+    this.getInfo = function() {
+        return this.info;
+    }
+}
+
+function CDProduct(title, price, playLength) {
+    ShopProduct.call(this, title, price);
+
+    this.playLength = playLength;
+
+    this.getPlayLength = function() {
+        return this.playLength;
+    }
+}
+
+function BookProduct(title, price, numPages) {
+    ShopProduct.call(this, title, price);
+
+    this.numPages = numPages;
+
+    this.getNumPages= function() {
+        return this.numPages;
+    }
+}
+
+const cd = new CDProduct('CD Title1', 200.10, '1:32');
+const cd2 = new CDProduct('CD Title2', 20.11, '2:31');
+const book = new BookProduct('Book Title1', 2.11, 42);
+const book2 = new BookProduct('Book Title2', 55.21, 325);
+
+cd.setTitle('CD Title1 updated');
+book2.setPrice(56.01);
+
+console.log(cd, cd2, book, book2);
+console.log(cd.getTitle());
+
+
+
+</script>
+</div>
+</body>
+</html>
+

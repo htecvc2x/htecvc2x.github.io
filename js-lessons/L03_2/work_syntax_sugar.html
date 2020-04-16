@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<body>
+
+<script>
+
+'use strict';
+
+class ShopProduct {
+    constructor(title, price) {
+        this.title = title;
+        this.price = price;
+    }
+
+    getTitle() {
+        return this.title;
+    }
+
+    setTitle(title) {
+        this.title = title;
+        return this;
+    }
+
+    getPrice() {
+        return this.price;
+    }
+
+    setPrice(price) {
+        this.price = price;
+        return this;
+    }
+
+    getInfo() {
+        return this.info;
+    }
+}
+
+class CDProduct extends ShopProduct {
+    constructor(title, price, playLength) {
+        super(title, price);
+        this.playLength = playLength;
+    }
+
+    getPlayLength() {
+        return this.playLength;
+    }
+}
+
+class BookProduct extends ShopProduct {
+    constructor(title, price, numPages) {
+        super(title, price);
+        this.numPages = numPages;
+    }
+
+    getNumPages() {
+        return this.numPages;
+    }
+}
+
+const cd = new CDProduct('cd', 10.22, '1h 30min');
+const book = new BookProduct('book', 1.32, '523');
+
+console.log(cd, book);
+
+</script>
+</div>
+</body>
+</html>
+
