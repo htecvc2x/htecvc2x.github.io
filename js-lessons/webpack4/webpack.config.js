@@ -1,66 +1,114 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-module.exports = {
-	entry: ["./src/index.js", "./src/scss/main.scss"],
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
-    },
-  module: {
-    rules: [
+module.exports = (env = {}) => {
+  const {
+    mode = 'development'
+  } = env;
+
+  const isProd = mode === 'production';
+
+  console.log(env);
+
+  const getStyleLoaders = () => {
+    return [
+      isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+      'css-loader',
       {
-        test: /\.(sass|scss)$/,
-        include: path.resolve(__dirname, "src/scss"),
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {}
-          },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-              url: false
-            }
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              ident: "postcss",
-              sourceMap: true,
-              plugins: () => [
-                require("cssnano")({
-                  preset: [
-                    "default",
-                    {
-                      discardComments: {
-                        removeAll: true
-                      }
-                    }
-                  ]
-                })
+        loader: "postcss-loader",
+        options: {
+          ident: "postcss",
+          sourceMap: true,
+          plugins: () => [
+            require("cssnano")({
+              preset: [
+                "default",
+                {
+                  discardComments: {
+                    removeAll: true
+                  }
+                }
               ]
-            }
+            })
+          ]
+        }
+      }
+    ];
+  };
+
+  const getPlugins = () => {
+    const plugins = [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'Webpack sandbox',
+        buildTime: new Date().toISOString(),
+        template: 'src/index.html'
+      })
+    ];
+
+    if (isProd) {
+      plugins.push(new MiniCssExtractPlugin({
+        filename: "./css/style-[hash:8]-min.css"
+      }));
+      plugins.push(
+        new CopyWebpackPlugin([{
+            from: "./src/fonts",
+            to: "./fonts"
           },
           {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true
-            }
+            from: "./src/favicon.ico",
+            to: "./favicon.ico"
+          },
+          {
+            from: "./src/img",
+            to: "./img"
           }
-        ]
-      }
-    ]
-  },
-	devServer: {
-		compress: true,
-	},
-	plugins: [
-		new CleanWebpackPlugin(),
-		new MiniCssExtractPlugin({
-			filename: "./css/style.min.css"
-		}),
-	]
+        ])
+      );
+    }
+
+    return plugins;
+  };
+
+  return {
+    devtool: isProd ? undefined : 'source-map',
+    mode: isProd ? 'production' : 'development',
+
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'bundle.js'
+    },
+
+    module: {
+      rules: [{
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader'
+        },
+
+        {
+          test: /\.(css)$/,
+          use: getStyleLoaders()
+        },
+
+        {
+          test: /\.(s[ca]ss)$/,
+          use: [...getStyleLoaders(), 'sass-loader']
+        }
+      ]
+    },
+
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      open: true
+    },
+
+    plugins: getPlugins(),
+
+  };
 };
