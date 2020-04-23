@@ -63,7 +63,7 @@ module.exports = (env = {}) => {
           },
           {
             from: "./src/img",
-            to: "./img/[name].[contenthash:8].[ext]"
+            to: "./img/[path][name]-[contenthash:8].[ext]"
           }
         ])
       );
@@ -96,7 +96,13 @@ module.exports = (env = {}) => {
         {
           test: /\.(s[ca]ss)$/,
           use: [...getStyleLoaders(), 'sass-loader']
-        }
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [{
+            loader: 'file-loader',
+          }, ],
+        },
       ]
     },
 
