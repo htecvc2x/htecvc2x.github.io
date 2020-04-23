@@ -1,4 +1,6 @@
 const path = require('path');
+const glob = require('glob');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {
@@ -42,12 +44,23 @@ module.exports = (env = {}) => {
   const getPlugins = () => {
     const plugins = [
       new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({
-        title: 'Webpack sandbox',
-        dts : Date.now(),
-        template: 'src/index.html',
-        filename : 'index.html'
-      })
+	  new HtmlWebpackPlugin({
+		title: 'Webpack sandbox',
+		template: 'src/index.html',
+		filename : 'index.html'
+	  }),
+
+	//...glob.sync('./src/*.html').map(htmlFile => {
+		  //return new HtmlWebpackPlugin({
+		//title: 'Webpack sandbox',
+		//template: 'src/index.html',
+		//filename : 'index.html',
+			//inject: true,
+			//interpolate: true,
+			//filename: path.basename(htmlFile),
+			//template: htmlFile,
+		  //});
+		//}),
     ];
 
     if (isProd) {
@@ -87,6 +100,7 @@ module.exports = (env = {}) => {
       rules: [
         {
             test: /\.html$/,
+			include: path.resolve(__dirname, 'src/includes'),
             use: {
                 loader: "html-loader",
                 options: {
