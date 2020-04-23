@@ -64,8 +64,8 @@ module.exports = (env = {}) => {
             to: "./favicon.ico"
           },
           {
-            from: "./src/img",
-            to: "./img/[path][name]-[contenthash:8].[ext]"
+            from: "./src/imges",
+            to: "./images/[path][name]-[contenthash:8].[ext]"
           }
         ])
       );
