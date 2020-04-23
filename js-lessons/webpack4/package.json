@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.mode development --open",
+    "start": "webpack-dev-server --env.mode development --progress --hide-modules --open",
     "build": "webpack --env.mode production"
   },
   "author": "Maxim Antonuk",
@@ -17,9 +17,12 @@
     "css-loader": "^3.5.2",
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
+    "raw-loader": "^4.0.1",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.4",
     "webpack": "^4.43.0",

@@ -44,7 +44,9 @@ module.exports = (env = {}) => {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         title: 'Webpack sandbox',
-        template: 'src/index.html'
+        dts : Date.now(),
+        template: 'src/index.html',
+        filename : 'index.html'
       })
     ];
 
@@ -82,26 +84,30 @@ module.exports = (env = {}) => {
     },
 
     module: {
-      rules: [{
+      rules: [
+        {
+            test: /\.html$/,
+            use: {
+                loader: "html-loader",
+                options: { minimize: true }
+            }
+        },
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           loader: 'babel-loader'
         },
-
         {
           test: /\.(css)$/,
           use: getStyleLoaders()
         },
-
         {
           test: /\.(s[ca]ss)$/,
           use: [...getStyleLoaders(), 'sass-loader']
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
-          use: [{
-            loader: 'file-loader',
-          }, ],
+          use: ['file-loader'],
         },
       ]
     },
