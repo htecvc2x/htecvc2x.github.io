@@ -13,8 +13,6 @@ module.exports = (env = {}) => {
 
   const isProd = mode === 'production';
 
-  console.log(env);
-
   const getStyleLoaders = () => {
     return [
       isProd ? MiniCssExtractPlugin.loader : 'style-loader',
@@ -46,7 +44,6 @@ module.exports = (env = {}) => {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         title: 'Webpack sandbox',
-        buildTime: new Date().toISOString(),
         template: 'src/index.html'
       })
     ];
@@ -66,7 +63,7 @@ module.exports = (env = {}) => {
           },
           {
             from: "./src/img",
-            to: "./img"
+            to: "./img/[name].[contenthash:8].[ext]"
           }
         ])
       );
